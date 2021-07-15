@@ -2,7 +2,10 @@ import styled from "styled-components";
 
 //Box é maiusculo pois é um componente não uma tag
 const Box = styled.div`
-    background: #FFFFFF;
+    background: hsl(177, 36%, 78%, 0.9);
+    backdrop-filter: blur(5px);
+    
+    
     border-radius: 8px;
 
     padding: 16px;
@@ -10,7 +13,7 @@ const Box = styled.div`
     
   .boxLink {
     font-size: 14px;
-    color: #2E7BB4;
+    color: #0E7886;
     text-decoration: none;
     font-weight: 800;
   }
@@ -55,7 +58,7 @@ const Box = styled.div`
     padding: 8px 12px;
     color: #FFFFFF;
     border-radius: 10000px;
-    background-color: #6F92BB;
+    background-color: #0E7886;
   }
 `;
 

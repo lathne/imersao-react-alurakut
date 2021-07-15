@@ -2,6 +2,8 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import NextLink from 'next/link';
 
+
+
 const BASE_URL = 'http://alurakut.vercel.app/';
 const v = '1';
 
@@ -24,7 +26,8 @@ export function AlurakutMenu({ githubUser }) {
   return (
     <AlurakutMenu.Wrapper isMenuOpen={isMenuOpen}>
       <div className="container">
-        <AlurakutMenu.Logo src={`${BASE_URL}/logo.svg`} />
+      {/* <h2>Travely</h2> */}
+        <AlurakutMenu.Logo src={`https://svgshare.com/i/ZAS.svg`} />
 
         <nav style={{ flex: 1 }}>
           {[{ name: 'Inicio', slug: '/'}, {name: 'Amigos', slug: '/amigos'}, {name: 'Comunidades', slug: '/comunidades'}].map((menuItem) => (
@@ -39,7 +42,7 @@ export function AlurakutMenu({ githubUser }) {
             Sair
           </a>
           <div>
-            <input placeholder="Pesquisar no Orkut" />
+            <input placeholder="Pesquisar no Travely" />
           </div>
         </nav>
 
@@ -54,9 +57,11 @@ export function AlurakutMenu({ githubUser }) {
 }
 AlurakutMenu.Wrapper = styled.header`
   width: 100%;
-  background-color: #308BC5;
+  /* background-color: teal;
+     background-color: hsl(177, 36%, 78%, 0.);  
+     backdrop-filter: blur(5px); */
   .alurakutMenuProfileSidebar {
-    background: white;
+    background: hsl(177, 36%, 78%, 0.7);
     position: fixed;
     z-index: 100;
     padding: 46px;
@@ -75,6 +80,7 @@ AlurakutMenu.Wrapper = styled.header`
       max-width: 400px;
       margin: auto;
     }
+    
     a {
       font-size: 18px;
     }
@@ -93,7 +99,9 @@ AlurakutMenu.Wrapper = styled.header`
     }
   }
   .container {
-    background-color: #308BC5;
+    background-color: teal;
+    /* background-color: hsl(177, 36%, 79%, 0.9);   */
+    /* backdrop-filter: blur(5px); */
     padding: 7px 16px;
     max-width: 1110px;
     margin: auto;
@@ -101,6 +109,12 @@ AlurakutMenu.Wrapper = styled.header`
     justify-content: space-between;
     position: relative;
     z-index: 101;
+    h2 {
+      color:  hsl(357, 100%, 73%, 1);
+      /* background-color: white; */
+      padding: 2px;
+      border-radius: 15px;
+    }
     @media(min-width: 860px) {
       justify-content: flex-start;
     }
@@ -140,7 +154,7 @@ AlurakutMenu.Wrapper = styled.header`
     }
     input {
       color: #ffffff;
-      background: #5579A1;
+      background: hsl(176, 80%, 41%, 0.5);
       padding: 10px 42px;
       border: 0;
       background-image: url(${`${BASE_URL}/icons/search.svg`});
@@ -222,7 +236,7 @@ export function AlurakutProfileSidebarMenuDefault() {
 AlurakutProfileSidebarMenuDefault.Wrapper = styled.div`
   a {
     font-size: 12px;
-    color: #2E7BB4;
+    color: black;
     margin-bottom: 16px;
     display: flex;
     align-items: center;
@@ -262,7 +276,7 @@ export function OrkutNostalgicIconSet(props) {
       {[
         { name: 'Confiável', slug: 'confiavel', icon: 'smile' },
         { name: 'Legal', slug: 'legal', icon: 'cool' },
-        { name: 'Sexy', slug: 'sexy', icon: 'heart' },
+        // { name: 'Sexy', slug: 'sexy', icon: 'heart' },
       ].map(({ name, slug, icon }) => {
         const total = props[slug] ? props[slug] : 2;
         return (
