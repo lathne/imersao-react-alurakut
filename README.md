@@ -1,4 +1,3 @@
-npm run dev
 
 # Example app with styled-components
 
