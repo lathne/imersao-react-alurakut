@@ -1,6 +1,8 @@
 import React from 'react';
-import MainGrid from '../src/components/MainGrid'
-import Box from '../src/components/Box'
+import nookies from 'nookies';
+import jwt from 'jsonwebtoken';
+import MainGrid from '../src/components/MainGrid';
+import Box from '../src/components/Box';
 import {  AlurakutMenu, AlurakutProfileSidebarMenuDefault, OrkutNostalgicIconSet } from '../src/lib/Alurakutcommons'
 import { ProfileRelationsBoxWrapper } from '../src/components/ProfileRelations'
 
@@ -46,9 +48,9 @@ function ProfileRelationsBox(propriedades) {
 
 
 
-export default function Home() {
+export default function Home(props) {
   
-  const usuarioAleatorio = 'lathne';
+  const usuarioAleatorio = props.githubUser;
   const [comunidades,setComunidades] = React.useState([]);
   const usuarios = [
     'lathne',
@@ -214,4 +216,35 @@ export default function Home() {
       </MainGrid>
     </>
     )
+}
+
+export async function getServerSideProps(context) {
+  const cookies = nookies.get(context)
+  const token = cookies.USER_TOKEN;
+  
+  const { isAuthenticated } = await fetch('https://alurakut.vercel.app/api/auth', {
+    headers: {
+        Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJnaXRodWJVc2VyIjoibGF0aG5lc2RmYXNkYXNkIiwicm9sZXMiOlsidXNlciJdLCJpYXQiOjE2MjY0Nzc3OTQsImV4cCI6MTYyNzA4MjU5NH0.osb_6bQcQzphp5sWgq3bnXjJrYGRqnRtzJN7jfPIJc4'
+    }
+  })
+  .then((resposta) => resposta.json())
+
+  console.log('isAuthenticated', isAuthenticated)
+
+  if(!isAuthenticated) {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      }
+    }
+  }
+  
+  const { githubUser } = jwt.decode(token);
+
+  return {
+    props: {
+      githubUser
+    }, //will be passed to the page component as props
+  }
 }
